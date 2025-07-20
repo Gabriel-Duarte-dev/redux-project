@@ -1,22 +1,16 @@
 import styled from "styled-components";
+import { Center } from "../../styleds/Center.styled";
 
-export const Overlay = styled.div`
+export const Container = styled(Center)`
   width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: #00000080;
+  height: 100dvh;
+  padding: 0 8px;
 `;
 
-export const Modal = styled.div`
+export const Card = styled.div`
   max-width: 500px;
   width: 100%;
   padding: 16px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   background: ${({ theme }) => theme.colors.primary};
   border-radius: 8px;
 
@@ -31,10 +25,28 @@ export const Modal = styled.div`
 
     a {
       color: white;
+      text-decoration: underline;
     }
   }
 
   button {
     margin-top: 20px;
+  }
+`;
+
+export const List = styled.ul`
+  list-style-type: none;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 4px;
+
+  li {
+    margin-bottom: 4px;
+    padding-left: 4px;
+
+    &:first-child {
+      padding: 0;
+      margin-bottom: 8px;
+    }
   }
 `;

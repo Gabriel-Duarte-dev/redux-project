@@ -27,7 +27,7 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  html, body {
+  html, body, #root {
     width: 100%;
     min-height: 100vh;
   }
@@ -35,7 +35,11 @@ export const GlobalStyles = createGlobalStyle`
   body {
     background: ${({ theme }) => theme.colors.bg};
     color: white;
-    padding: 40px 0;
     font-family: "Montserrat", sans-serif;
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
   }
 `;

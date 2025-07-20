@@ -1,22 +1,22 @@
 import { Component, type ReactNode } from "react";
-import * as S from "./UserDetails.styled";
 import { Button } from "../../styleds/Button.styled";
+import { Link } from "react-router-dom";
+import * as S from "./UserDetails.styled";
 import type { User } from "../../stores/users/types";
 
 interface UserDetailsProps {
   user: User | null;
-  onClose: () => void;
 }
 
 export class UserDetails extends Component<UserDetailsProps> {
   render(): ReactNode {
-    const { user, onClose } = this.props;
+    const { user } = this.props;
 
     if (!user) return null;
 
     return (
-      <S.Overlay onClick={onClose}>
-        <S.Modal onClick={(e) => e.stopPropagation()}>
+      <S.Container>
+        <S.Card onClick={(e) => e.stopPropagation()}>
           <h2>{user.name}</h2>
           <p>
             <strong>Email:</strong> {user.email}
@@ -24,21 +24,45 @@ export class UserDetails extends Component<UserDetailsProps> {
           <p>
             <strong>Telefone:</strong> {user.phone}
           </p>
-          <p>
-            <strong>Endereço:</strong> {user.address.street},{" "}
-            {user.address.city}
-          </p>
-          <p>
-            <strong>Empresa:</strong> {user.company.name}
-          </p>
+          <S.List>
+            <li>
+              <strong>Endereço:</strong>
+            </li>
+            <li>
+              <strong>Rua:</strong> {user.address.street}
+            </li>
+            <li>
+              <strong>Cidade:</strong> {user.address.city}
+            </li>
+            <li>
+              <strong>CEP:</strong> {user.address.zipcode}
+            </li>
+            <li>
+              <strong>Unidade:</strong> {user.address.suite}
+            </li>
+          </S.List>
+          <S.List>
+            <li>
+              <strong>Empresa:</strong>
+            </li>
+            <li>
+              <strong>Nome:</strong> {user.company.name}
+            </li>
+            <li>
+              <strong>Slogan:</strong> {user.company.catchPhrase}
+            </li>
+            <li>
+              <strong>Expertise:</strong> {user.company.bs}
+            </li>
+          </S.List>
           <p>
             <strong>Site:</strong> <a href={user.website}>{user.website}</a>
           </p>
-          <Button $variant="secondary" onClick={onClose}>
-            Fechar
-          </Button>
-        </S.Modal>
-      </S.Overlay>
+          <Link to="/">
+            <Button $variant="secondary">Voltar</Button>
+          </Link>
+        </S.Card>
+      </S.Container>
     );
   }
 }
